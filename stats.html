@@ -1,0 +1,100 @@
+{% extends 'main.html' %}
+{% block title %} Stats {% endblock title %}
+{% block headquarter %} {{headquarter[0]}}, {{headquarter[1]}}, {{headquarter[2]}} {% endblock headquarter %}
+{% block phone %} {{phone}} {% endblock phone %}
+{% block email %} {{email}} {% endblock email %}
+{% block body %}
+<style>
+    #stats-btn{
+        background-color: rgb(3,105,161);
+        color: white;
+    }
+</style>
+<div class="bg-slate-700 py-8 px-5">
+    <div class="w-full md:w-3/5 mx-auto grid grid-cols-1 gap-5">
+        <form action="/data" method="POST" class="grid grid-cols-12 font-bold text-sm">
+            <select name="course-id" class="col-span-10 md:col-span-11 h-8 flex items-center bg-slate-100 px-1">
+                {% for course in course_list %}
+                <option value="{{course.crsid}}">{{course.course}}</option>
+                {% endfor %}
+            </select>
+            <button type="submit" class="col-span-2 md:col-span-1 h-8 flex items-center justify-center
+            px-3 bg-blue-500 text-white">View</button>
+        </form>
+        <div class="text-base text-white font-bold">
+            View Coursewise Information |
+            <span class="text-blue-300">{{course_name}}</span>
+        </div>
+        <hr class="border-t-[1px] border-slate-400">
+        <div class="text-sm text-white text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing
+        elit. Quae veritatis, est quia odio, libero, delectus ex velit tenetur consectetur nesciunt tempora
+        quod nemo temporibus aut mollitia repellat deleniti hic neque? Reprehenderit in recusandae iusto
+        doloremque. Alias explicabo dolorum quasi fuga saepe! Doloremque repudiandae, voluptatem excepturi
+        modi iure quas culpa provident consequuntur obcaecati dignissimos architecto, dolorem aliquid, beatae
+        id unde eum eligendi nemo quasi assumenda! Qui vitae enim nesciunt! Labore, ratione?</div>
+    </div>
+</div>
+<div class="py-8 px-5">
+    <div class="w-full md:w-3/5 mx-auto grid grid-cols-1 gap-5 text-sm">
+        <span class="text-base font-bold text-slate-800">Students Enrolled ({{student_list|length}})</span>
+        <hr class="border-t-[1px] border-slate-400">
+        <div class="overflow-y-auto max-h-60">
+            {% if student_list|length == 0 %}
+            <span class="font-bold text-slate-600">No Entries Available</span>
+            {% else %}
+            <table class="text-[12px] font-bold w-full">
+                <tr class="h-8">
+                    <th class="bg-slate-700 text-white">Roll</th>
+                    <th class="bg-slate-700 text-white">Full Name</th>
+                    <th class="bg-slate-700 text-white">Gender</th>
+                    <th class="bg-slate-700 text-white">DOB</th>
+                    <th class="bg-slate-700 text-white">City</th>
+                    <th class="bg-slate-700 text-white">DOE</th>
+                </tr>
+                {% for student in student_list %}
+                    {% if (loop.index % 2) == 1 %}
+                    <tr class="h-8 bg-slate-100">
+                        <td class="border-b-[1px] border-slate-400 text-center px-2">{{student.roll}}</td>
+                        <td class="border-b-[1px] border-slate-400 text-center px-2">{{student.fullname}}</td>
+                        <td class="border-b-[1px] border-slate-400 text-center px-2">{{student.gender}}</td>
+                        <td class="border-b-[1px] border-slate-400 text-center px-2">{{student.dob}}</td>
+                        <td class="border-b-[1px] border-slate-400 text-center px-2">{{student.city}}</td>
+                        <td class="border-b-[1px] border-slate-400 text-center px-2">{{student.doe}}</td>
+                    </tr>
+                    {% else %}
+                    <tr class="h-8">
+                        <td class="border-b-[1px] border-slate-400 text-center px-2">{{student.roll}}</td>
+                        <td class="border-b-[1px] border-slate-400 text-center px-2">{{student.fullname}}</td>
+                        <td class="border-b-[1px] border-slate-400 text-center px-2">{{student.gender}}</td>
+                        <td class="border-b-[1px] border-slate-400 text-center px-2">{{student.dob}}</td>
+                        <td class="border-b-[1px] border-slate-400 text-center px-2">{{student.city}}</td>
+                        <td class="border-b-[1px] border-slate-400 text-center px-2">{{student.doe}}</td>
+                    </tr>
+                    {% endif %}
+                {% endfor %}
+            </table>
+            {% endif %}
+        </div>
+        <span class="text-base font-bold text-slate-800">Branch-wise Enrollment</span>
+        <hr class="border-t-[1px] border-slate-400">
+        <div id="branch-wise-enrollment" class="h-80"></div>
+    </div>
+</div>
+<script>
+    var city_name = '{{city_names | tojson}}';
+    var city_enrl = '{{city_enroll | tojson}}';
+
+    city_name = city_name.substring(1, city_name.length - 1);
+    city_enrl = city_enrl.substring(1, city_enrl.length - 1);
+
+    var enroll_by_city = [{
+        x: JSON.parse(city_name),
+        y: JSON.parse(city_enrl),
+        type: 'bar'
+    }];
+    var enroll_by_city_layout = {
+        title: 'Enrollments in Different Cities'
+    };
+    Plotly.newPlot(document.getElementById('branch-wise-enrollment'), enroll_by_city, enroll_by_city_layout);d
+</script>
+{% endblock body %}

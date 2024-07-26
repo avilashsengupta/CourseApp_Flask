@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LearnXtra - Enroll</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+    <script src="{{url_for('static', filename='script.js')}}"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <div class="p-5 md:p-8">
+        <div class="w-full md:w-3/5 bg-slate-100 grid grid-cols-1 gap-5 p-5 border-[1px] border-slate-400 mx-auto">
+            <div class="font-bold text-center">
+                <span class="text-sky-800">Learn</span><span class="text-blue-500">Xtra</span> Course Enroll
+            </div>
+            <img src="{{url_for('static', filename='images/enroll.jpg')}}" class="w-full h-auto">
+            <div class="font-bold text-sm text-center">
+                <span>REGISTER FOR</span><br>
+                <span class="text-sky-700">{{course_name}}</span>
+            </div>
+            <hr class="border-t-[1px] border-slate-400">
+            <form action="/enroll/{{course_code}}" method="POST" class="grid grid-cols-1 md:grid-cols-4 gap-5">
+                <div class="grid grid-cols-1 gap-2 text-sm col-span-1 md:col-span-2">
+                    <span class="font-bold">Full Name</span>
+                    <input type="text" class="px-2 py-1 w-full border-[1px] border-slate-400" name="enroll-name">
+                </div>
+                <div class="grid grid-cols-1 gap-2 text-sm">
+                    <span class="font-bold">Gender</span>
+                    <select type="text" class="px-2 py-1 w-full border-[1px] border-slate-400" name="enroll-gender">
+                        <option value="M">Male</option>
+                        <option value="F">Female</option>
+                    </select>
+                </div>
+                <div class="grid grid-cols-1 gap-2 text-sm">
+                    <span class="font-bold">DOB</span>
+                    <input type="date" name="birth-date" class="px-2 py-1 w-full border-[1px] border-slate-400">
+                </div>
+                <div class="grid grid-cols-1 gap-2 text-sm col-span-1 md:col-span-4">
+                    <span class="font-bold">Enrollment Branch</span>
+                    <select type="date" name="branch-city" class="px-2 py-1 w-full border-[1px] border-slate-400">
+                        {% for city in city_list %}
+                        <option value="{{city}}">{{city_list[city]}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <button type="submit" class="border-[1px] border-[rgb(32,168,27)] font-bold
+                hover:bg-[rgb(32,168,27)] text-[rgb(32,168,27)] hover:text-white text-sm
+                w-fit px-3 py-1">Register</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

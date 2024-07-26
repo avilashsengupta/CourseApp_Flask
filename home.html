@@ -1,0 +1,43 @@
+{% extends 'main.html' %}
+{% block title %} Home {% endblock title %}
+{% block headquarter %} {{headquarter[0]}}, {{headquarter[1]}}, {{headquarter[2]}} {% endblock headquarter %}
+{% block phone %} {{phone}} {% endblock phone %}
+{% block email %} {{email}} {% endblock email %}
+{% block body %}
+<style>
+    #home-btn{
+        background-color: rgb(3,105,161);
+        color: white;
+    }
+</style>
+<div class="my-8 mx-8 md:w-3/5 md:mx-auto grid grid-cols-1 gap-5">
+    <div class="bg-slate-100 p-5 border-[1px] border-slate-400 grid grid-cols-1 gap-5">
+        <div class="font-bold">
+            Welcome to <span class="text-sky-800">Learn</span><span class="text-blue-500">Xtra</span> Academy
+        </div>
+        <hr class="border-t-[1px] border-slate-400">
+        <div class="text-sm text-justify">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugiat,
+        dignissimos ducimus id tempora nemo deserunt doloremque magni beatae, error repellendus quis! Quam
+        placeat sed minima blanditiis iure rem a eum, eos assumenda recusandae minus rerum, cupiditate laboriosam?
+        Possimus earum quas quis, nesciunt, tempore sapiente esse expedita sed explicabo est deserunt mollitia
+        corporis eveniet aliquid perspiciatis. Dolor excepturi minima deserunt et eius! Aliquam cupiditate quae in
+        quisquam tempora odio repellat! Neque deleniti quaerat officiis error laborum architecto id quisquam provident
+        vel ratione! Ex, explicabo dolor? Nam pariatur reiciendis inventore debitis illum eaque consequuntur, a modi
+        excepturi, earum voluptas perferendis suscipit ut.</div>
+        <a href="/contact">
+            <button type="button" class="py-1 px-3 text-sm font-bold border-[1px] border-blue-600 text-blue-600
+            hover:bg-blue-600 hover:text-white w-fit">Contact Us</button>
+        </a>
+    </div>
+    <div class="grid grid-cols-1 gap-5">
+        <p class="font-bold">Our <span class="text-blue-600">Gallery</span></p>
+        <hr class="border-t-[1px] border-slate-400">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-1">
+            <img src="{{url_for('static', filename='images/corporate_01.jpg')}}" class="w-full h-auto">
+            <img src="{{url_for('static', filename='images/corporate_02.jpg')}}" class="w-full h-auto">
+            <img src="{{url_for('static', filename='images/corporate_03.jpg')}}" class="w-full h-auto">
+            <img src="{{url_for('static', filename='images/corporate_04.jpg')}}" class="w-full h-auto">
+        </div>
+    </div>
+</div>
+{% endblock body %}

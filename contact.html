@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LearnXtra - Contact</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+    <script src="{{url_for('static', filename='script.js')}}"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <div class="p-5 md:p-8">
+        <div class="h-10 w-full md:w-3/5 mx-auto mb-5">
+            {% if success == True %}
+            <div class="h-10 bg-[rgb(200,245,175)] border-[1px] border-[rgb(90,150,48)] justify-between
+            px-3 flex items-center" id="submit-success">
+                <div class="flex items-center space-x-2">
+                    <span class="text-[rgb(30,120,35)]"><i class="fa fa-check-circle"></i></span>
+                    <span class="font-bold text-sm text-[rgb(30,120,35)]">Submitted Successfully!</span>
+                </div>
+                <button class="text-[rgb(30,120,35)]" onclick="hideQuerySubmitSuccess()">
+                    <i class="fa fa-close"></i>
+                </button>
+            </div>
+            {% endif %}
+        </div>
+        <form action="/contact" method="POST" class="w-full md:w-3/5 bg-slate-100 grid grid-cols-1 gap-5
+        p-5 border-[1px] border-slate-400 mx-auto">
+            <div class="font-bold text-center">
+                Contact <span class="text-sky-800">Learn</span><span class="text-blue-500">Xtra</span> Academy
+            </div>
+            <img src="{{url_for('static', filename='images/contact.jpg')}}" class="w-full h-auto">
+            <div class="font-bold text-sm text-center">
+                {{day}} {{month}} {{year}},
+                <span class="text-sky-800">{{weekday}}</span>
+            </div>
+            <hr class="border-t-[1px] border-slate-400">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div class="grid grid-cols-1 gap-2 text-sm">
+                    <p class="flex items-center space-x-2">
+                        <i class="fa fa-user text-blue-600"></i>
+                        <span class="font-bold">Full Name</span>
+                    </p>
+                    <input type="text" class="px-2 py-1 w-full border-[1px] border-slate-400"
+                    name="sender-name">
+                </div>
+                <div class="grid grid-cols-1 gap-2 text-sm">
+                    <p class="flex items-center space-x-2">
+                        <i class="fa fa-phone text-blue-600"></i>
+                        <span class="font-bold">Phone Number</span>
+                    </p>
+                    <div class="grid grid-cols-6 gap-1">
+                        <input type="text" class="px-2 py-1 w-full border-[1px] border-slate-400"
+                        name="phone-code" placeholder="+CD">
+                        <input type="number" class="px-2 py-1 w-full border-[1px] border-slate-400 col-span-5"
+                        name="phone-number">
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 gap-2 text-sm col-span-1 md:col-span-2">
+                    <p class="flex items-center space-x-2">
+                        <i class="fa fa-comment text-blue-600"></i>
+                        <span class="font-bold">Message</span>
+                    </p>
+                    <textarea class="px-2 py-1 w-full border-[1px] border-slate-400 h-40"
+                    name="sender-message"></textarea>
+                </div>
+            </div>
+            <div class="flex items-center space-x-3">
+                <button type="submit" class="border-[1px] border-[rgb(32,168,27)] font-bold
+                hover:bg-[rgb(32,168,27)] text-[rgb(32,168,27)] hover:text-white text-sm
+                w-fit px-3 py-1">Submit</button>
+                <a href="/">
+                    <button type="button" class="border-[1px] border-[rgb(32,168,27)] font-bold
+                    hover:bg-[rgb(32,168,27)] text-[rgb(32,168,27)] hover:text-white text-sm
+                    w-fit px-3 py-1">Back to Home</button>
+                </a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

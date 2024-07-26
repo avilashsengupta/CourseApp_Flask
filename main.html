@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LearnXtra - {% block title %} {% endblock title %}</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+    <script src="{{url_for('static', filename='script.js')}}"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.plot.ly/plotly-2.32.0.min.js" charset="UTF-8"></script>
+</head>
+<body>
+    <nav class="bg-gray-100 px-4 h-12 flex items-center justify-between">
+        <div class="text-lg md:text-xl font-bold">
+            <span class="text-sky-800">Learn</span><span class="text-blue-500">Xtra</span>
+        </div>
+        <button class="bg-slate-700 rounded flex items-center justify-center h-[25px] w-[25px] md:hidden"
+        onclick="menuDropDown()"></button>
+        <div class="text-sm md:flex hidden md:items-center md:justify-center md:space-x-3 font-bold text-sky-700
+        md:top-0 md:relative absolute top-12 bg-gray-100 w-full md:w-fit left-0" id="menu-drop">
+            <a href="/">
+                <button type="button" class="md:border-[1px] md:border-sky-700 px-2 py-2 md:py-1
+                w-full md:w-fit" id="home-btn">Home</button>
+            </a>
+            <a href="/abouts">
+                <button type="button" class="md:border-[1px] md:border-sky-700 px-2 py-2 md:py-1
+                w-full md:w-fit" id="abouts-btn">Abouts</button>
+            </a>
+            <a href="/courses">
+                <button type="button" class="md:border-[1px] md:border-sky-700 px-2 py-2 md:py-1
+                w-full md:w-fit" id="courses-btn">Courses</button>
+            </a>
+            <a href="/data">
+                <button type="button" class="md:border-[1px] md:border-sky-700 px-2 py-2 md:py-1
+                w-full md:w-fit" id="stats-btn">View Stats</button>
+            </a>
+        </div>
+    </nav>
+    {% block body %} {% endblock body %}
+    <div class="px-5 py-4 bg-gray-200 grid grid-cols-1 md:grid-cols-3 text-sm gap-3">
+        <div class="flex items-center md:justify-center px-5 md:px-0">
+            <span><i class="fa fa-phone"></i></span>&nbsp;+91 {% block phone %} {% endblock phone %}
+        </div>
+        <div class="flex items-center md:justify-center px-5 md:px-0">
+            <span><i class="fa fa-envelope"></i></span>&nbsp;{% block email %} {% endblock email %}
+        </div>
+        <div class="flex items-center md:justify-center px-5 md:px-0">
+            <span><i class="fa fa-map-marker"></i></span>&nbsp;{% block headquarter %} {% endblock headquarter %}
+        </div>
+    </div>
+</body>
+</html>

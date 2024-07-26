@@ -1,0 +1,73 @@
+{% extends 'main.html' %}
+{% block title %} Abouts {% endblock title %}
+{% block headquarter %} {{headquarter[0]}}, {{headquarter[1]}}, {{headquarter[2]}} {% endblock headquarter %}
+{% block phone %} {{phone}} {% endblock phone %}
+{% block email %} {{email}} {% endblock email %}
+{% block body %}
+<style>
+    #abouts-btn{
+        background-color: rgb(3,105,161);
+        color: white;
+    }
+</style>
+<div class="p-8 grid grid-cols-1 gap-5">
+    <div class="grid grid-cols-1 gap-2">
+        <p class="font-bold">About Our Company</p>
+        <hr class="border-t-[1px] border-slate-400">
+        <div class="flex items-center justify-center text-sm text-justify">Lorem, ipsum dolor sit amet consectetur
+        adipisicing elit. Omnis, tempora! Fuga nisi atque iusto pariatur repellendus dicta. Reiciendis impedit iste
+        vitae quibusdam totam laborum dolorem maiores sequi ipsa sint eos natus optio suscipit delectus, expedita
+        accusamus molestiae, enim libero officiis veritatis rem repudiandae, eveniet magnam pariatur. Aliquam quisquam
+        minus non voluptas asperiores ratione molestias et, ex amet voluptate ducimus sunt a enim quod provident. Quae
+        nemo, aut impedit quisquam velit, earum autem facilis quidem voluptate eius reiciendis nulla odit, assumenda
+        officiis eveniet veniam aliquid recusandae placeat quia ipsum! Quo, possimus? Atque quibusdam, velit, error
+        voluptatibus commodi libero corrupti ea praesentium, ipsum laborum laboriosam! Quasi, libero soluta consequatur
+        quam iusto deserunt veritatis ipsum minus adipisci dolore corporis rem eligendi hic ad quos, tempora atque
+        delectus. Odit assumenda saepe rerum eos asperiores commodi minus magni maxime necessitatibus ea voluptas sed,
+        numquam, rem obcaecati ratione, autem temporibus labore itaque! Officia id rem minus!</div>
+        <div class="text-sm grid grid-cols-1 gap-2">
+            <div>
+                <span class="font-bold text-sky-700">Branches</span>: {{city_list}}
+            </div>
+            <div>
+                <span class="font-bold text-sky-700">Head Quarters</span>:
+                {{headquarter[0]}}, {{headquarter[1]}}, {{headquarter[2]}}
+            </div>
+            <div>
+                <span class="font-bold text-sky-700">Founded</span>: {{found_date}}
+            </div>
+        </div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        {% for person in people %}
+        <div class="grid grid-cols-1 bg-slate-100 p-5 border-[1px] border-slate-400">
+            {% if person.empid == 1 %}
+            <img src="{{url_for('static', filename='images/office_girl_01.jpg')}}" class="w-auto h-[200px]
+            rounded-full mx-auto">
+            {% elif person.empid == 2 %}
+            <img src="{{url_for('static', filename='images/office_girl_02.jpg')}}" class="w-auto h-[200px]
+            rounded-full mx-auto">
+            {% elif person.empid == 3 %}
+            <img src="{{url_for('static', filename='images/office_boy_01.jpg')}}" class="w-auto h-[200px]
+            rounded-full mx-auto">
+            {% elif person.empid == 4 %}
+            <img src="{{url_for('static', filename='images/office_boy_03.jpg')}}" class="w-auto h-[200px]
+            rounded-full mx-auto">
+            {% elif person.empid == 5 %}
+            <img src="{{url_for('static', filename='images/office_girl_03.jpg')}}" class="w-auto h-[200px]
+            rounded-full mx-auto">
+            {% elif person.empid == 6 %}
+            <img src="{{url_for('static', filename='images/office_boy_02.jpg')}}" class="w-auto h-[200px]
+            rounded-full mx-auto">
+            {% endif %}
+            <div class="text-sm grid grid-cols-1 gap-3 py-4">
+                <p class="font-bold text-sky-700 text-center">{{person.fullname}}</p>
+                <hr class="border-t-[1px] border-slate-400">
+                <p class="font-bold text-center">{{person.position}}</p>
+                <p class="font-bold text-center">Age: {{agelist[person.empid]}} Years</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock body %}
